@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Mini Calculator',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -28,8 +29,13 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-        colorScheme: .fromSeed(
-          seedColor: const Color.fromARGB(255, 60, 41, 92),
+        colorScheme: const ColorScheme.light(
+          primary: Colors.black,
+          secondary: Colors.grey,
+          surface: Colors.white,
+          onPrimary: Colors.white,
+          onSecondary: Colors.black,
+          onSurface: Colors.black,
         ),
       ),
       home: const MyHomePage(title: 'Mini Calculator'),
@@ -94,10 +100,14 @@ class _MyHomePageState extends State<MyHomePage> {
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
         // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.black,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Text(
+            'Mini Calculator',
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
