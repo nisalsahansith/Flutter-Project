@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_flutter_application/screens/home_page.dart';
+import 'package:my_flutter_application/shared/login_provider.dart';
 
-class Login extends StatefulWidget {
+class Login extends ConsumerWidget {
   const Login({super.key});
 
   @override
-  _LoginState createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -40,8 +38,11 @@ class _LoginState extends State<Login> {
                 padding: const EdgeInsets.only(left: 35, right: 35),
                 child: Column(
                   children: [
-                    const TextField(
-                      decoration: InputDecoration(
+                    TextField(
+                      onChanged: (value){
+                        ref.read(loginProvider.notifier).setEmail(value);
+                      },
+                      decoration: const InputDecoration(
                         labelText: "Email",
                         filled: true,
                         fillColor: Colors.white70,
@@ -94,9 +95,16 @@ class _LoginState extends State<Login> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {                      
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (context) => const Home(),
+                        ),
+                      );
+                    },
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.blue),
+                      backgroundColor: WidgetStateProperty.all(Colors.blue),
                     ),
                     child: const Text(
                       "Login",

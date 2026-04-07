@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_application/screens/_login_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_flutter_application/screens/login_page.dart';
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    initialRoute: 'login',
-    routes: {
-      'login' : (context)=>Login()
-    }
-  ));
+  runApp(
+    ProviderScope(child: //Add Provider Scope
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: 'login',
+        routes: {'login': (context) => Login()},
+      )
+    )
+  );
 }
